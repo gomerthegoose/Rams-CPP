@@ -91,8 +91,8 @@ void LoginWindow::HandleLogin()
   }else{ //if enterd data is valid this will run
 
 
-    parseFile.userDetails(usrLgnInDetails);
-  
+    parseFile.userDetails(usrLgnInDetails, 1);
+    //cout << cryptography.EncryptString("id,username,password,accessLevel") << endl;
   }
 }
 
