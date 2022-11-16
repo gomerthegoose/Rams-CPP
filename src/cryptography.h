@@ -7,8 +7,6 @@ class Cryptography
 {
 public:
 
-    Cryptography();
-    virtual ~Cryptography();
 
     std::string EncryptString(std::string input); // decrypt String
 

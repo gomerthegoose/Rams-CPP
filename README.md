@@ -15,3 +15,5 @@ in mingw64 Run:
 add "C:\msys64\mingw64\bin" to user variables
 
 run ./make.bash in mingw64 terminal
+
+if these steps dont make it compile, cry

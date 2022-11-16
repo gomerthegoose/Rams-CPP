@@ -1,23 +1,21 @@
 
 #include "LoginWindow.h"
 #include "TextChecker.h"
+#include "cryptography.h"
+#include "FileLocations.h"
+#include "ParseFile.h"
+
 #include <iostream>
 #include <fstream>
 #include <filesystem>
 #include <String>
 
-#define UserFile "\\UserDetails\\LoginDetails.txt"
 using namespace std;
 
 TextChecker textCheck;
-//ErrorMsg errorMsg;
+Cryptography cryptography;
 
-struct UserInfo
-{
-  int id;
-  std::string username;
-  std::string password;
-};
+
 
 LoginWindow::LoginWindow(): m_VBox(Gtk::Orientation::VERTICAL)
 {
@@ -30,7 +28,7 @@ LoginWindow::LoginWindow(): m_VBox(Gtk::Orientation::VERTICAL)
   m_VBox.append(m_HBox);
 
   auto css = Gtk::CssProvider::create();//create new css object
-  css->load_from_path("./Style.css"); //import css
+  css->load_from_path(lgnCssFile); //import css
 
   get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION); //something
     
@@ -69,23 +67,28 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::HandleLogin()
 {
-  UserInfo userInfo; //store current users information
-  string loginError = ""; // store error message
 
- if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
-   userInfo.username = UsernameEnrty_txt.get_text();
- }else{
-   loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
- }
-
- if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
-   userInfo.password = PasswordEntry_txt.get_text();
- }else{
-   loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
- }
-
-  if (loginError != ""){ // display error message if error variable is not empty  
-    loginError_msg->set_message(loginError);
-    loginError_msg->show();
-  }
 }
+
+ //UserInfo userInfo; //store current users information
+//  string loginError = ""; // store error message
+//
+//  cout << cryptography.EncryptString("0,usr,pass,1") << endl;
+//
+// if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
+//   userInfo.username = UsernameEnrty_txt.get_text();
+// }else{
+//   loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
+// }
+//
+// if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
+//   userInfo.password = PasswordEntry_txt.get_text();
+// }else{
+//   loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
+// }
+//
+//  if (loginError != ""){ // display error message if error variable is not empty  
+//    loginError_msg->set_message(loginError);
+//    loginError_msg->show();
+//  }else{ //if enterd date is valid this will run
+//
