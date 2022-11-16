@@ -1,0 +1,38 @@
+  
+  std::unique_ptr<Gtk::MessageDialog> loginError_msg;
+  
+  if (loginError != ""){ // display error message if error variable is not empty  
+    loginError_msg.reset(new Gtk::MessageDialog(*this, loginError));
+    loginError_msg->set_modal(true);
+    loginError_msg->set_hide_on_close(true);
+    loginError_msg->set_icon_name("Error");
+    loginError_msg->signal_response().connect(sigc::hide(sigc::mem_fun(*loginError_msg, &Gtk::Widget::hide)));
+    loginError_msg->show();
+  }
+
+  loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
+
+
+      addUserTmp_btn.set_label("Add User");
+    addUserTmp_btn.signal_clicked().connect( sigc::mem_fun(*this,&LoginWindow::AddUsr) );
+    m_VBox.append(addUserTmp_btn);
+    addUserTmp_btn.set_expand();
+    set_default_widget(addUserTmp_btn);
+
+
+
+    void LoginWindow::AddUsr(){
+  UserInfo userInfo; // create new variable to store current users information
+  string userRawData;
+
+  ifstream ReadFile(filesystem::current_path().string() + UserFile); // open user details file
+
+  while (getline (ReadFile, userRawData)) {
+  // Output the text from the file
+  cout << userRawData << endl;
+  }
+  ReadFile.close();
+
+  userInfo.username = UsernameEnrty_txt.get_text();
+  userInfo.password = PasswordEntry_txt.get_text();
+}
