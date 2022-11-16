@@ -9,6 +9,6 @@ class FileLocations
 public:
 
 
-#define lgnCssFile "/css/Style.css" //location of style .css file
-#define usrLgnInDetails "/UserDetails/LoginDetail.txt" //userd to store username, id and password of users
+#define lgnCssFile "./css/Style.css" //location of style .css file
+#define usrLgnInDetails "./UserDetails/LoginDetails.txt" //userd to store username, id and password of users
 };

@@ -1,4 +1,5 @@
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
+#include <string>
 
 class LoginWindow : public Gtk::Window
 {
@@ -6,8 +7,16 @@ public:
   LoginWindow();
   virtual ~LoginWindow();
 
+  struct UserDetails {
+    int Id;
+    int StaffId;
+    std::string Username;
+    std::string Password;
+    int AccessLevel;
+  };
+
 protected:
-  //Signal handlers:
+  //Signal handlesr:
   void HandleLogin();
 
   //Child widgets:
@@ -17,6 +26,5 @@ protected:
   Gtk::Entry UsernameEnrty_txt;
   Gtk::Button Login_btn; 
   Gtk::Button addUserTmp_btn; 
-  //Gtk::MessageDialog loginError_msg;
   std::unique_ptr<Gtk::MessageDialog> loginError_msg;
 };

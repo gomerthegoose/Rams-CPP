@@ -16,5 +16,6 @@ public:
     UserInfo userDetails(std::string fileLocation);
 
 protected:
+  
 
 };

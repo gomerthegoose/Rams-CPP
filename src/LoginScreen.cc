@@ -14,6 +14,7 @@ using namespace std;
 
 TextChecker textCheck;
 Cryptography cryptography;
+ParseFile parseFile;
 
 
 
@@ -67,28 +68,31 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::HandleLogin()
 {
+  UserDetails userDetails; //store current users information
+  string loginError = ""; // store error message
 
+  //cout << cryptography.EncryptString("0,usr,pass,1") << endl;
+
+  if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
+    userDetails.Username = UsernameEnrty_txt.get_text();
+  }else{
+    loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
+  }
+
+  if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
+    userDetails.Password = PasswordEntry_txt.get_text();
+  }else{
+    loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
+  }
+
+  if (loginError != ""){ // display error message if error variable is not empty  
+    loginError_msg->set_message(loginError);
+    loginError_msg->show();
+  }else{ //if enterd data is valid this will run
+
+
+    parseFile.userDetails(usrLgnInDetails);
+  
+  }
 }
 
- //UserInfo userInfo; //store current users information
-//  string loginError = ""; // store error message
-//
-//  cout << cryptography.EncryptString("0,usr,pass,1") << endl;
-//
-// if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
-//   userInfo.username = UsernameEnrty_txt.get_text();
-// }else{
-//   loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
-// }
-//
-// if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
-//   userInfo.password = PasswordEntry_txt.get_text();
-// }else{
-//   loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
-// }
-//
-//  if (loginError != ""){ // display error message if error variable is not empty  
-//    loginError_msg->set_message(loginError);
-//    loginError_msg->show();
-//  }else{ //if enterd date is valid this will run
-//
