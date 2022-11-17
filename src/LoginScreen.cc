@@ -89,10 +89,7 @@ void LoginWindow::HandleLogin()
     loginError_msg->set_message(loginError);
     loginError_msg->show();
   }else{ //if enterd data is valid this will run
-
-
-    parseFile.userDetails(usrLgnInDetails, 1);
-    //cout << cryptography.EncryptString("id,username,password,accessLevel") << endl;
+    
   }
 }
 
