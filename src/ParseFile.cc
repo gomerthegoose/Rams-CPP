@@ -12,7 +12,7 @@
 Cryptography cryptography1;
 
 
-ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation , int id){
+ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation, std::string username ,std::string password){
   ParseFile::UserInfo output;
 
   io::CSVReader<4> in(fileLocation);
@@ -24,13 +24,15 @@ ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation , int id){
     output.id = std::stoi(cryptography1.DecryptString(std::to_string(output.id)));
     output.username = cryptography1.DecryptString(output.username);
     output.password = cryptography1.DecryptString(output.password);
-    output.accessLevel = std::stoi(cryptography1.DecryptString(std::to_string(output.accessLevel)));
+    output.accessLevel = std::stoi(cryptography1.DecryptString(std::to_string(output.accessLevel))); // re add error for school
 
     std::cout << output.id << std::endl;
+    
     std::cout << output.username << std::endl;
     std::cout << output.password << std::endl;
     std::cout << output.accessLevel << std::endl;
-
+    
+    return output;
   }
   return output;
 }

@@ -14,7 +14,7 @@ public:
     int accessLevel;
   };
 
-  UserInfo userDetails(std::string fileLocation, int id);
+  UserInfo userDetails(std::string fileLocation, std::string username ,std::string password);
 
 protected:
   
