@@ -59,7 +59,6 @@ LoginWindow::LoginWindow(): m_VBox(Gtk::Orientation::VERTICAL)
   loginError_msg->set_hide_on_close(true);
   loginError_msg->set_icon_name("Error");
   loginError_msg->signal_response().connect(sigc::hide(sigc::mem_fun(*loginError_msg, &Gtk::Widget::hide)));
-
 }
 
 LoginWindow::~LoginWindow()
@@ -68,28 +67,33 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::HandleLogin()
 {
-  UserDetails userDetails; //store current users information
+  ParseFile::UserInfo userDetails; //store current users information
   string loginError = ""; // store error message
 
   //cout << cryptography.EncryptString("0,usr,pass,1") << endl;
 
   if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
-    userDetails.Username = UsernameEnrty_txt.get_text();
+    userDetails.username = UsernameEnrty_txt.get_text();
   }else{
     loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
   }
 
   if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
-    userDetails.Password = PasswordEntry_txt.get_text();
+    userDetails.password = PasswordEntry_txt.get_text();
   }else{
     loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
   }
 
-  if (loginError != ""){ // display error message if error variable is not empty  
-    loginError_msg->set_message(loginError);
-    loginError_msg->show();
-  }else{ //if enterd data is valid this will run
-    
+  if (loginError == ""){ // if string is empty then the data is valid and we can atempt to login  
+    userDetails = parseFile.userDetails(usrLgnInDetails,UsernameEnrty_txt.get_text(),PasswordEntry_txt.get_text());
+    if (userDetails.loginSuccess){
+      cout << "User: " + cryptography.DecryptString(userDetails.username) << endl; 
+      return; 
+    }else{
+      loginError = "Username or password Not Found";
+    }
   }
+  loginError_msg->set_message(loginError);
+  loginError_msg->show();
 }
 

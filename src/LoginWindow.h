@@ -7,13 +7,7 @@ public:
   LoginWindow();
   virtual ~LoginWindow();
 
-  struct UserDetails {
-    int Id;
-    int StaffId;
-    std::string Username;
-    std::string Password;
-    int AccessLevel;
-  };
+  
 
 protected:
   //Signal handlesr:
@@ -27,4 +21,5 @@ protected:
   Gtk::Button Login_btn; 
   Gtk::Button addUserTmp_btn; 
   std::unique_ptr<Gtk::MessageDialog> loginError_msg;
+  Gtk::Window LoginScreenWindow;
 };

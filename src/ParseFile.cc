@@ -8,9 +8,7 @@
 //#include <cstring>
 //#include <ifstream>
 
-
 Cryptography cryptography1;
-
 
 ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation, std::string username ,std::string password){
   ParseFile::UserInfo output;
@@ -19,20 +17,16 @@ ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation, std::strin
   in.read_header(io::ignore_extra_column, "id", "username", "password", "accessLevel");
   while(in.read_row(output.id, output.username, output.password, output.accessLevel)){
 
-    
-    
-    output.id = std::stoi(cryptography1.DecryptString(std::to_string(output.id)));
-    output.username = cryptography1.DecryptString(output.username);
-    output.password = cryptography1.DecryptString(output.password);
-    output.accessLevel = std::stoi(cryptography1.DecryptString(std::to_string(output.accessLevel))); // re add error for school
+    output.loginSuccess = false; //login fail by default
 
-    std::cout << output.id << std::endl;
-    
-    std::cout << output.username << std::endl;
-    std::cout << output.password << std::endl;
-    std::cout << output.accessLevel << std::endl;
-    
-    return output;
+    if (cryptography1.DecryptString(output.username) == username && cryptography1.DecryptString(output.password) == password){ // decrypt username and password and match to enterd information
+      output.loginSuccess = true; // login succesful if details match
+      std::cout << "Login Success!" << std::endl; //log login success
+      output.id = std::stoi(cryptography1.DecryptString(std::to_string(output.id))); //decrypt id 
+      output.accessLevel = std::stoi(cryptography1.DecryptString(std::to_string(output.accessLevel))); // re add error for school
+      return output;
+    }
   }
+  //std::cout << output.loginSuccess << std::endl; //test
   return output;
 }

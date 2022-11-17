@@ -8,9 +8,11 @@ public:
 
 protected:
   //Signal handlers:
-
+  void loginPrompt();
 
   //Child widgets:
+  Gtk::Window LoginMenuWindow;
   Gtk::Box m_HBox;
   Gtk::Box m_VBox;
+  Gtk::Button testbutton;
 };

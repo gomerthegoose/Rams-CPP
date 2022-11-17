@@ -12,6 +12,7 @@ public:
     std::string username;
     std::string password;
     int accessLevel;
+    bool loginSuccess;
   };
 
   UserInfo userDetails(std::string fileLocation, std::string username ,std::string password);
