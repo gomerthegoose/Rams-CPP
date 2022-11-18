@@ -1,6 +1,5 @@
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
 #include <string>
-#include "ParseFile.h"
 
 class LoginWindow : public Gtk::Window
 {
@@ -8,12 +7,12 @@ public:
   LoginWindow();
   virtual ~LoginWindow();
 
-  ParseFile::UserInfo userDetails;
   
 
 protected:
   //Signal handlesr:
   void HandleLogin();
+  void onClose();
 
   //Child widgets:
   Gtk::Box m_HBox;
