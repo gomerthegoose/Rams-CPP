@@ -5,13 +5,15 @@ class MainMenu : public Gtk::Window
 public:
   MainMenu();
   virtual ~MainMenu();
+  void CreateWindow();
 
 protected:
   //Signal handlers:
   void loginPrompt();
+  
 
   //Child widgets:
-  Gtk::Window LoginMenuWindow;
+  Gtk::Window MainMenuWindow;
   Gtk::Box m_HBox;
   Gtk::Box m_VBox;
   Gtk::Button testbutton;

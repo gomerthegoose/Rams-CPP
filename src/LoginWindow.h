@@ -1,5 +1,6 @@
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
 #include <string>
+#include "ParseFile.h"
 
 class LoginWindow : public Gtk::Window
 {
@@ -7,6 +8,7 @@ public:
   LoginWindow();
   virtual ~LoginWindow();
 
+  ParseFile::UserInfo userDetails;
   
 
 protected:
@@ -21,5 +23,5 @@ protected:
   Gtk::Button Login_btn; 
   Gtk::Button addUserTmp_btn; 
   std::unique_ptr<Gtk::MessageDialog> loginError_msg;
-  Gtk::Window LoginScreenWindow;
+  //Gtk::Window LoginScreenWindow;
 };

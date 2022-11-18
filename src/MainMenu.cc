@@ -1,6 +1,7 @@
 #include "MainMenu.h"
 #include "LoginWindow.h"
 #include "C:\msys64\mingw64\include\gtkmm-4.0\gtkmm.h"
+#include <iostream>
 
 MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu constructor 
 {
@@ -15,6 +16,8 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   testbutton.set_label("test");
   testbutton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
   m_VBox.append(testbutton);
+
+
 }
 
 MainMenu::~MainMenu(){
@@ -22,5 +25,5 @@ MainMenu::~MainMenu(){
 
 
 void MainMenu::loginPrompt(){
-    Gtk::
+
 }
