@@ -4,6 +4,7 @@
 #include "cryptography.h"
 #include "FileLocations.h"
 #include "ParseFile.h"
+#include "MainMenu.h"
 
 #include <iostream>
 #include <fstream>
@@ -15,6 +16,10 @@ using namespace std;
 TextChecker textCheck;
 Cryptography cryptography;
 ParseFile parseFile;
+
+//MainMenu mainMenu;
+
+ 
 
 
 
@@ -61,13 +66,17 @@ LoginWindow::LoginWindow(): m_VBox(Gtk::Orientation::VERTICAL)
   loginError_msg->signal_response().connect(sigc::hide(sigc::mem_fun(*loginError_msg, &Gtk::Widget::hide)));
 }
 
+
+
+
+
 LoginWindow::~LoginWindow()
 {
 }
 
 void LoginWindow::HandleLogin()
 {
-  ParseFile::UserInfo userDetails; //store current users information
+  //ParseFile::UserInfo userDetails; //store current users information
   string loginError = ""; // store error message
 
   //cout << cryptography.EncryptString("0,usr,pass,1") << endl;
@@ -88,6 +97,7 @@ void LoginWindow::HandleLogin()
     userDetails = parseFile.userDetails(usrLgnInDetails,UsernameEnrty_txt.get_text(),PasswordEntry_txt.get_text());
     if (userDetails.loginSuccess){
       cout << "User: " + cryptography.DecryptString(userDetails.username) << endl; 
+      this->close();
       return; 
     }else{
       loginError = "Username or password Not Found";
