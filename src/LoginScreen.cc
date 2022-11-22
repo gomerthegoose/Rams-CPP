@@ -13,9 +13,11 @@
 
 using namespace std;
 
-TextChecker textCheck;
-Cryptography cryptography;
-ParseFile parseFile;
+static TextChecker textCheck;
+static Cryptography cryptography;
+static ParseFile parseFile;
+
+ParseFile::UserInfo userDetails; //store current users information
 
 //MainMenu mainMenu;
 
@@ -76,7 +78,7 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::HandleLogin()
 {
-  ParseFile::UserInfo userDetails; //store current users information
+  
   string loginError = ""; // store error message
 
   //cout << cryptography.EncryptString("0,usr,pass,1") << endl;
