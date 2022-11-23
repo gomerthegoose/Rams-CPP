@@ -9,6 +9,7 @@ class FileLocations
 public:
 
 
-#define lgnCssFile "./css/Style.css" //location of style .css file
+#define lgnCssFile "./css/LoginMenu.css" //location of login forms .css file
+#define ManinMenuCssFile "./css/MainMenu.css" //location of main menu .css file
 #define usrLgnInDetails "./UserDetails/LoginDetails.goose" //userd to store username, id and password of users
 };

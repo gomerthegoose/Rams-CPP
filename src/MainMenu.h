@@ -17,4 +17,5 @@ protected:
   Gtk::Box m_HBox;
   Gtk::Box m_VBox;
   Gtk::Button testbutton;
+  Gtk::Grid m_grid;
 };
