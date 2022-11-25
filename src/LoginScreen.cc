@@ -17,7 +17,7 @@ static TextChecker textCheck;
 static Cryptography cryptography;
 static ParseFile parseFile;
 
-ParseFile::UserInfo userDetails; //store current users information
+ParseFile::UserInfo CurrentUserDetails; //store current users information
 
 //MainMenu mainMenu;
 
@@ -84,27 +84,30 @@ void LoginWindow::HandleLogin()
   //cout << cryptography.EncryptString("0,usr,pass,1") << endl;
 
   if( textCheck.validateText(UsernameEnrty_txt.get_text()).isValid){ // validate user entry
-    userDetails.username = UsernameEnrty_txt.get_text();
+    CurrentUserDetails.username = UsernameEnrty_txt.get_text();
   }else{
     loginError = textCheck.validateText(UsernameEnrty_txt.get_text()).err;
   }
 
   if( textCheck.validateText(PasswordEntry_txt.get_text()).isValid){ // validate user entry
-    userDetails.password = PasswordEntry_txt.get_text();
+    CurrentUserDetails.password = PasswordEntry_txt.get_text();
   }else{
     loginError = textCheck.validateText(PasswordEntry_txt.get_text()).err;
   }
 
-  if (loginError == ""){ // if string is empty then the data is valid and we can atempt to login  
-    userDetails = parseFile.userDetails(usrLgnInDetails,UsernameEnrty_txt.get_text(),PasswordEntry_txt.get_text());
-    if (userDetails.loginSuccess){
-      cout << "User: " + cryptography.DecryptString(userDetails.username) << endl; 
-      this->close();
-      return; 
-    }else{
-      loginError = "Username or password Not Found";
-    }
+  
+  CurrentUserDetails = parseFile.userDetails(usrLgnInDetails,UsernameEnrty_txt.get_text(),PasswordEntry_txt.get_text());
+  if (CurrentUserDetails.loginSuccess){
+
+    cout << "User: " + cryptography.DecryptString(CurrentUserDetails.username) << endl; 
+    cout << "StaffID: " + to_string(CurrentUserDetails.staffID) << endl;
+    
+    this->close();
+    return; 
+  }else{
+    loginError = "Username or password Not Found";
   }
+  
   loginError_msg->set_message(loginError);
   loginError_msg->show();
 }

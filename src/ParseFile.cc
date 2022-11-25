@@ -13,9 +13,9 @@ Cryptography cryptography1;
 ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation, std::string username ,std::string password){
   ParseFile::UserInfo output;
 
-  io::CSVReader<4> in(fileLocation);
-  in.read_header(io::ignore_extra_column, "id", "username", "password", "accessLevel");
-  while(in.read_row(output.id, output.username, output.password, output.accessLevel)){
+  io::CSVReader<5> in(fileLocation);
+  in.read_header(io::ignore_extra_column,"id","staffID", "username", "password", "accessLevel");
+  while(in.read_row(output.id,output.staffID, output.username, output.password, output.accessLevel)){
 
     output.loginSuccess = false; //login fail by default
 
@@ -23,10 +23,10 @@ ParseFile::UserInfo ParseFile::userDetails (std::string fileLocation, std::strin
       output.loginSuccess = true; // login succesful if details match
       std::cout << "Login Success!" << std::endl; //log login success
       output.id = std::stoi(cryptography1.DecryptString(std::to_string(output.id))); //decrypt id 
+      output.staffID = std::stoi(cryptography1.DecryptString(std::to_string(output.staffID)));
       output.accessLevel = std::stoi(cryptography1.DecryptString(std::to_string(output.accessLevel))); // re add error for school
       return output;
     }
   }
-  //std::cout << output.loginSuccess << std::endl; //test
   return output;
 }

@@ -17,11 +17,19 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   set_child(m_VBox);
   m_VBox.append(m_HBox);
 
-  testbutton.set_label("test");
+  testbutton.set_label("hello me name a chef this is a button");
   testbutton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
   testbutton.get_style_context()->add_class("testButton"); //apply css
-  m_grid.attach(testbutton, 0,0,1,1);
-  m_VBox.append(testbutton);
+
+  testbutton2.set_label("test2");
+  testbutton2.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  testbutton2.get_style_context()->add_class("testButton"); //apply css
+
+  controls_Box.append(testbutton);
+  controls_Box.append(testbutton2);
+  //m_grid.attach(testbutton, 1,1,20,1);
+  //m_grid.attach(testbutton2,1,2,20,1);
+  m_VBox.append(controls_Box);
 
 
 }

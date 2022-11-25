@@ -9,6 +9,7 @@ public:
   struct UserInfo
   {
     int id;
+    int staffID;
     std::string username;
     std::string password;
     int accessLevel;
