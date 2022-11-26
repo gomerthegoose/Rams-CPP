@@ -9,7 +9,9 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   g_object_set(gtk_settings_get_default(),"gtk-application-prefer-dark-theme", TRUE,NULL); //set dark mode
 
   auto css = Gtk::CssProvider::create();//create new css object
-  css->load_from_path(lgnCssFile); //import css
+  css->load_from_path(ManinMenuCssFile); //import css
+
+  get_style_context()->add_provider_for_display(Gdk::Display::get_default(), css, GTK_STYLE_PROVIDER_PRIORITY_APPLICATION); //something
 
   set_size_request(1000,800); //set default size of window  
   set_title("Main Menu"); // title
@@ -23,12 +25,13 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
 
   testbutton2.set_label("test2");
   testbutton2.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  testbutton2.get_style_context()->add_class("testButton"); //apply css
+  testbutton2.get_style_context()->add_class("testButton2"); //apply css
 
+  controls_Box.get_style_context()->add_class("controlBox"); //apply css
   controls_Box.append(testbutton);
   controls_Box.append(testbutton2);
-  //m_grid.attach(testbutton, 1,1,20,1);
-  //m_grid.attach(testbutton2,1,2,20,1);
+
+
   m_VBox.append(controls_Box);
 
 

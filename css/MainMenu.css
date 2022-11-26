@@ -1,12 +1,30 @@
 .testButton{
-    position: relative;
-    left: 30px;
-    border: 3px solid #73AD21;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
 
-    background-image: -gtk-gradient (radial,
+    border: -gtk-gradient (radial,
     center center, 0,
     center center, 1,
-    from(yellow), to(green));
+    from(rgb(255, 0, 0)), to(green));
 
-    
+}
+
+.testButton2{
+    position: absolute;
+    left: 0px;
+
+    border: -gtk-gradient (radial,
+    center center, 0,
+    center center, 1,
+    from(rgb(255, 0, 0)), to(green));
+
+}
+
+.controlBox{
+    border: 2px solid grey;
+    position: fixed;
+    bottom: 0px;
+    top: 100px;
+    size: 10px;
 }
