@@ -10,14 +10,18 @@ public:
 protected:
   //Signal handlers:
   void loginPrompt();
+  Gtk::Frame GetMainMenuControls();
   
 
   //Child widgets:
   Gtk::Window MainMenuWindow;
   Gtk::Box m_HBox;
   Gtk::Box m_VBox;
-  Gtk::Button testbutton;
-  Gtk::Button testbutton2;
+  Gtk::Button StaffButton;
+  Gtk::Button StockButton;
+  Gtk::Button ThursdayBookingButton;
+  Gtk::Button SundayBookingButton;
+  Gtk::Button exitButton;
   Gtk::Grid m_grid;
-  Gtk::Box controls_Box;
+  Gtk::Frame controls_Frame;
 };
