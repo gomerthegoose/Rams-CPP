@@ -19,10 +19,38 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
   set_child(m_VBox);
   m_VBox.append(m_HBox);
 
-  testbutton.set_label("hello me name a chef this is a button");
-  testbutton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
-  testbutton.get_style_context()->add_class("testButton"); //apply css
 
+<<<<<<< HEAD
+  Gtk::Grid* grid = Gtk::manage(new Gtk::Grid());
+
+  StaffButton.set_label("Staff");
+  StaffButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  grid->attach(StaffButton, 1,1,2,1);
+
+  StockButton.set_label("Stock");
+  StockButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  grid->attach(StockButton,1,3,2,1);
+
+  ThursdayBookingButton.set_label("Thursday Bookings");
+  ThursdayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  grid->attach(ThursdayBookingButton,1,5,2,1);
+
+  SundayBookingButton.set_label("Sunday Bookings");
+  SundayBookingButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  grid->attach(SundayBookingButton,1,7,2,1);
+
+  exitButton.set_label("Exit");
+  exitButton.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
+  grid->attach(exitButton,1,8,2,1);
+
+
+  
+  
+  
+  
+  controls_Frame.set_child(*grid);
+  m_VBox.append(controls_Frame);
+=======
   testbutton2.set_label("test2");
   testbutton2.signal_clicked().connect( sigc::mem_fun(*this,&MainMenu::loginPrompt) ); //set callback function
   testbutton2.get_style_context()->add_class("testButton2"); //apply css
@@ -33,14 +61,19 @@ MainMenu::MainMenu(): m_VBox(Gtk::Orientation::VERTICAL) // main mewnu construct
 
 
   m_VBox.append(controls_Box);
+>>>>>>> 8039a2770487db7545460db4a32ae64818065fa4
 
 
 }
+
+
+
 
 MainMenu::~MainMenu(){
 }
 
 
 void MainMenu::loginPrompt(){
-
+  std::cout << "Top Tear Garbage" << std::endl;
+  controls_Frame.hide();
 }
